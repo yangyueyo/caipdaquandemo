@@ -1,0 +1,32 @@
+server:
+  port: 9000
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///caipudaquandemo?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+
+#mybatis-plus:
+#  global-config:
+#    db-config:
+#      id-type: auto
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    auto-mapping-behavior: full
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  mapper-locations: classpath:mybatis/mapper/*.xml
+
+
+#mybatis配置
+mybatis:
+  mapper-locations: /mapper/*.xml  #配置映射文件
+  type-aliases-package: com.caipudaquandemo.entity   #配置实体类
+
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+		namespace:空间位置 （指具体的映射文件）
+		parameterType="int" ：参数类型（一般可以不用写）
+		id： 唯一标识
+		resultType：结果类型
+-->
+<mapper namespace="com.caipudaquandemo.mapper.caiPuManagementMapper">
+
+    <delete id="deleteCaipu">
+        DELETE
+        FROM caipu_info
+        WHERE cid = #{cid}
+
+
+    </delete>
+
+    <!--查询所有菜谱-->
+    <!--SELECT *  FROM caipu_info WHERE caiPu_typeid IN (SELECT id FROM small_type WHERE big_type_id = #{bigTypeId}-->
+    <select id="getcaiPu" resultType="com.caipudaquandemo.entity.caiPuManagement">
+        <!--SELECT *  FROM caipu_info WHERE caiPu_typeid IN (SELECT id FROM small_type)-->
+        SELECT * FROM caipu_info WHERE caiPu_typeid IN (SELECT sid FROM small_type)
+        <!--SELECT *  FROM caipu_info WHERE caiPu_typeid IN (SELECT sid FROM small_type WHERE big_type_id)-->
+    </select>
+
+    <!--查询首页列表推荐-->
+    <select id="getcaiPuId" resultType="com.caipudaquandemo.entity.caiPuManagement">
+        SELECT *
+        FROM caipu_info
+        WHERE caiPu_typeid = 11
+    </select>
+
+
+    <!--查询菜谱分类-->
+    <select id="getsmallTypeName" resultType="com.caipudaquandemo.entity.smallTypeManagement">
+        <!--select * from small_type-->
+        <!--SELECT *  FROM small_type WHERE sid IN (SELECT sid FROM small_type)-->
+        SELECT * FROM small_type
+    </select>
+
+    <select id="test" resultType="com.caipudaquandemo.entity.caiPuManagement">
+        SELECT *
+        FROM caipu_info
+    </select>
+
+
+    <!--查询所有菜谱，搜索的模糊查询  pagestart记录每一页存放最大的page  pagesize页面大小-->
+    <select id="getAllCaiPu" resultType="com.caipudaquandemo.entity.caiPuManagement">
+        SELECT * FROM caipu_info
+        <if test="caiPuName!= null">
+            WHERE caiPu_name like #{caiPu_name}
+        </if>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <!--获取所有菜谱个数-->
+
+    <select id="getcaiPuById" resultType="com.caipudaquandemo.entity.caiPuManagement">
+        SELECT *
+        FROM caipu_info
+        WHERE caiPu_typeid = #{typeId}
+    </select>
+
+    <select id="getDetailById" resultType="com.caipudaquandemo.entity.caiPuManagement">
+        SELECT *
+        from caipu_info
+        where cid = #{id}
+    </select>
+
+
+    <select id="getCaipuList" resultType="com.caipudaquandemo.entity.caiPuManagement">
+
+        SELECT cid,caiPu_name, caiPu_type, caiPu_main, caiPu_fu, caiPu_upload, shouCang_num
+        FROM `caipu_info`
+
+    </select>
+
+    <select id="searchCaipu" resultType="com.caipudaquandemo.entity.caiPuManagement">
+
+        SELECT  caiPu_name, caiPu_type, caiPu_main, caiPu_fu, description, shouCang_num,caiPu_text
+        FROM `caipu_info`
+        WHERE caiPu_name LIKE "%"#{caipuName}"%"
+
+    </select>
+
+</mapper>
