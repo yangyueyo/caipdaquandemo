@@ -28,4 +28,8 @@ public interface caiPuManagementMapper {
 
     void deleteCaipu(@Param("cid") Integer cid);
 
+    void insertCaipuList(caiPuManagement caiPuManagement);
+
+    Integer getCaipuId(@Param("sname")String sname);
+
 }

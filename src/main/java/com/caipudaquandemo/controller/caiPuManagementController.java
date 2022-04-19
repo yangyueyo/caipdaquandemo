@@ -35,13 +35,12 @@ public class caiPuManagementController {
 
 	//查询首页列表推荐
 	@PostMapping("/getcaiPuId")
-	public JSONResult getcaiPuId(@RequestBody Integer caiPuTypeId) {
+	public JSONResult getcaiPuId(Integer caiPuTypeId) {
 		final List<caiPuManagement> caiPuManagementList = caiPuManagementService.getcaiPuId(caiPuTypeId);
 		return JSONResult.success(caiPuManagementList);
 	}
 
-
-	//查询菜谱小类
+	//查询菜谱分类
 	@GetMapping("/getsmallTypeName")
 	public JSONResult getsmallTypeName() {
 		final List<smallTypeManagement> caiPuList = caiPuManagementService.getsmallTypeName();
@@ -56,25 +55,31 @@ public class caiPuManagementController {
 		return JSONResult.success(caiPuManagement);
 	}
 
-
+	//后台管理系统获取菜谱列表
 	@GetMapping("/getCaiPuList")
 	public JSONResult getCaipuList() {
 
 		List<caiPuManagement> caipuList = caiPuManagementService.getCaipuList();
-
 		return JSONResult.success(caipuList);
 
 	}
 
+	//后台管理系统模糊搜索菜谱
 	@GetMapping("/searchCaipu")
 	public JSONResult searchCaipu(caiPuManagement caiPuManagement) {
 		return JSONResult.success(caiPuManagementService.searchCaipu(caiPuManagement.getCaiPuName()));
 	}
 
-
+	//后台管理系统删除菜谱
 	@PostMapping("/deleteCaipu")
 	public JSONResult deleteCaipu(caiPuManagement caiPuManagement) {
 		return caiPuManagementService.deleteCaipu(caiPuManagement.getCid());
 	}
+
+	@PostMapping("/insertCaipuList")
+	public JSONResult insertCaipuList( caiPuManagement caiPuManagement) {
+		return caiPuManagementService.insertCaipuList(caiPuManagement);
+	}
+
 
 }

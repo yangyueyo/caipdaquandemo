@@ -43,6 +43,19 @@ public class caiPuManagementServiceImpl implements caiPuManagementService {
 
 
 	@Override
+	public JSONResult insertCaipuList(caiPuManagement caiPuManagement) {
+
+
+		Integer caipuId = caiPuManagementMapper.getCaipuId(caiPuManagement.getCaiPuType());
+
+		caiPuManagement.setCaiPuTypeId(caipuId);
+
+		caiPuManagementMapper.insertCaipuList(caiPuManagement);
+
+		return JSONResult.success();
+	}
+
+	@Override
 	public JSONResult deleteCaipu(Integer cid) {
 		try {
 			caiPuManagementMapper.deleteCaipu(cid);

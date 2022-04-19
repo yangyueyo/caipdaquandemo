@@ -26,4 +26,7 @@ public interface caiPuManagementService {
 
 
     JSONResult deleteCaipu(Integer cid);
+
+    JSONResult insertCaipuList (caiPuManagement caiPuManagement);
+
 }

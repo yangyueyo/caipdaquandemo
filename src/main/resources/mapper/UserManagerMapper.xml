@@ -4,7 +4,29 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.caipudaquandemo.mapper.UserManagerMapper">
-    <select id="getUserManagerByMassage" resultType="com.caipudaquandemo.entity.UserManager">
-        SELECT * FROM user_info WHERE username =#{username} AND password=#{password} AND per=1
+
+    <insert id="inserUser">
+        insert INTO user_info(username, `password`, usernumber, per)
+        VALUES (#{username}, #{password}, #{usernumber}, #{per})
+    </insert>
+    <delete id="deleteUser">
+        DELETE
+        from user_info
+        WHERE uid = #{uid}
+    </delete>
+
+    <select id="getAllUser" resultType="com.caipudaquandemo.entity.UserManager">
+
+        SELECT uid, username, `password`, per, usernumber
+        FROM `user_info`
     </select>
+
+    <select id="selectUser" resultType="com.caipudaquandemo.entity.UserManager">
+        SELECT uid, username, `password`, per
+        FROM `user_info`
+        WHERE username LIKE "%"#{username}"%"
+    </select>
+
+
+
 </mapper>

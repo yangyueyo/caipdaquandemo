@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @MapperScan("com.caipudaquandemo.mapper")
+@MapperScan("com.caipudaquandemo.modules.caipu.mapper")
 @SpringBootApplication
 public class CaipudaquandemoApplication {
 

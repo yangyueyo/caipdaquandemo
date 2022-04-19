@@ -6,4 +6,5 @@ import com.caipudaquandemo.entity.smallTypeManagement;
 
 //菜谱小类mapper接口
 public interface smallTypeManagementMapper extends BaseMapper<smallTypeManagement> {
+	
 }

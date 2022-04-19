@@ -10,13 +10,10 @@
 		resultType：结果类型
 -->
 <mapper namespace="com.caipudaquandemo.mapper.caiPuManagementMapper">
-
     <delete id="deleteCaipu">
         DELETE
         FROM caipu_info
         WHERE cid = #{cid}
-
-
     </delete>
 
     <!--查询所有菜谱-->
@@ -74,17 +71,31 @@
 
     <select id="getCaipuList" resultType="com.caipudaquandemo.entity.caiPuManagement">
 
-        SELECT cid,caiPu_name, caiPu_type, caiPu_main, caiPu_fu, caiPu_upload, shouCang_num
+        SELECT cid, caiPu_name, caiPu_type, caiPu_main, caiPu_fu, caiPu_upload, shouCang_num,caiPu_text
         FROM `caipu_info`
 
     </select>
 
     <select id="searchCaipu" resultType="com.caipudaquandemo.entity.caiPuManagement">
 
-        SELECT  caiPu_name, caiPu_type, caiPu_main, caiPu_fu, description, shouCang_num,caiPu_text
+        SELECT caiPu_name, caiPu_type, caiPu_main, caiPu_fu, description, shouCang_num, caiPu_text
         FROM `caipu_info`
         WHERE caiPu_name LIKE "%"#{caipuName}"%"
 
     </select>
+    <select id="getCaipuId" resultType="java.lang.Integer">
+
+        SELECT sid
+        FROM `small_type`
+        WHERE sname = #{sname}
+
+    </select>
+
+
+    <insert id="insertCaipuList">
+        INSERT INTO caipu_info (caiPu_name, caiPu_type, caipu_typeid, caiPu_upload, caiPu_main, caiPu_fu, caiPu_text)
+        VALUES (#{caiPuName}, #{caiPuType},#{caiPuTypeId},#{caiPuUpload}, #{caiPuMain}, #{caiPuFu}, #{caiPuText})
+    </insert>
+
 
 </mapper>
